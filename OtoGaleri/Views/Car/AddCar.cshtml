@@ -1,0 +1,44 @@
+@model Car
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="mb-3 bg bg-primary text-center fw-bold text-white"> Araba Ekle </h1>
+    <form asp-controller="Car" asp-action="AddCar" enctype="multipart/form-data" method="POST" class="mt-2 mb-1" >
+        <div class="form-group mt-2">
+            <label for="CarBrand" class="text-dark">Marka</label>
+            <input asp-for="CarBrand" required="required" required="required" type="text" placeholder="Marka girin" class="form-control" id="CarBrand" aria-describedby="nameHelp">
+        </div>
+        <div class="form-group mt-2">
+            <label for="CarModel" class="text-dark">Model</label>
+            <input asp-for="CarModel" required="required" type="text" placeholder="Model girin" class="form-control" id="CarModel" aria-describedby="nameHelp">
+        </div>
+       <div class="form-group mt-2">
+           <label for="uploadPhoto">Araç Resmi</label>
+           <div class="input-group">
+               <div class="custom-file">
+                   <input required="required" name="uploadPhoto" type="file" class="custom-file-input" id="uploadPhoto">
+                   <label class="custom-file-label" for="uploadPhoto">Resim seçin</label>
+               </div>
+           </div>
+           </div>
+        <div class="form-group mt-2">
+            <label for="CarYear" class="text-dark">Araç Yılı</label>
+            <input asp-for="CarYear" required="required" placeholder="Araç yılı girin" class="form-control" id="CarYear" aria-describedby="nameHelp">
+        </div>
+        <div class="form-group mt-2">
+            <label for="CarKm" class="text-dark">Araç Kilometre</label>
+            <input asp-for="CarKm" required="required" placeholder="Araç kilometre girin" class="form-control" id="CarKm" aria-describedby="nameHelp">
+        </div>
+         <div class="form-group mt-2">
+                    <label for="CarPrice" class="text-dark">Araç Fiyat</label>
+                    <input asp-for="CarPrice" required="required" placeholder="Araç fiyat girin" class="form-control" id="CarPrice" aria-describedby="nameHelp">
+                </div>
+    <button class="btn btn-primary btn-lg btn-block mt-2">
+       Oluştur
+    </button>
+    </form>
+
+</div>

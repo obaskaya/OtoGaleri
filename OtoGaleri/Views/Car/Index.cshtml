@@ -1,0 +1,68 @@
+@model IEnumerable<Car>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["message"]
+        </div>
+    }
+    
+    @await Component.InvokeAsync("Brands")
+
+    <h1 class="mb-3 bg bg-primary text-center fw-bold text-white"> Arabalarımız </h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Resim</th>
+            <th scope="col">Marka</th>
+            <th scope="col">Model</th>
+            <th scope="col">Yıl</th>
+            <th scope="col">Km</th>
+            <th scope="col">Fiyat</th>
+            <th scope="col">Satın Al</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <th><img width="100" height="100" class="" src="~/Assets/assets/carimg/@(car.CarImage)" alt=""></th>
+                <td>@car.CarBrand</td>
+                <td>@car.CarModel</td>
+                <td>@car.CarYear</td>
+                <td>@car.CarKm KM</td>
+                <td>@car.CarPrice ₺</td>
+                <td> <a class="btn btn-success" data-bs-id="@car.CarID" data-bs-toggle="modal" data-bs-target="#basicModal-@car.CarID">Satın Al</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@foreach (var car in Model)
+{
+    <!-- basic modal -->
+    <div id="basicModal-@car.CarID" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Satış</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Aracı satın almak istiyor musunuz?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                    <a asp-route-id="@car.CarID" asp-controller="Car" asp-action="BuyCar"><button  type="button" class="btn btn-primary">Satın Al</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

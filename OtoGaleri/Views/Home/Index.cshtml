@@ -1,0 +1,25 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1 class="bg bg-primary text-center fw-bold text-white"> Markalarımız </h1>
+<div class="mt-3 row">
+    @foreach (var car in Model)
+        {
+            <div class="text-center mt-2 col-md-3">
+                <a asp-route-id = "@car"  asp-controller="Car" asp-action="Index">
+                    <div class="card border border-primary" style="width: 18rem;">
+                                      <img class="rounded img-thumbnail card-img-top" width="2048" height="2048" src="~/Assets/assets/img/@(car).png" alt="Card image cap">
+                                      <div class="card-body">
+                                          <h5 class="card-title">@car</h5>
+                                      </div>
+                                    </div>
+                </a>
+            </div>
+        }
+    
+</div>
+
+
